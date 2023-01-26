@@ -12,6 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +20,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Store a Data'),
         ),
-        body: TextField(),
+        body: TextField(
+          controller: _controller,
+          decoration: const InputDecoration(
+            hintText: 'Enter a some text',
+          ),
+        ),
       ),
     );
   }
