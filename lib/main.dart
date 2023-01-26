@@ -13,20 +13,28 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Store a Data'),
-        ),
-        body: TextField(
-          controller: _controller,
-          decoration: const InputDecoration(
-            hintText: 'Enter a some text',
+          appBar: AppBar(
+            title: const Text('Store a Data'),
           ),
-        ),
-      ),
+          body: TextField(
+            controller: _controller,
+            decoration: const InputDecoration(
+              hintText: 'Enter a some text',
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                _controller.text = 'Hello World';
+              });
+            },
+            child: const Icon(Icons.add),
+          )),
     );
   }
 }
