@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_list_db/models/models.dart';
 import 'package:todo_list_db/screens/addNote.dart';
+import 'package:todo_list_db/screens/openningApp.dart';
 import 'package:todo_list_db/screens/pageAll.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: MyApp(
-      date: "",
-      plan: "",
-      x: false,
-      x2: true,
-    ),
-  ));
+  runApp(MaterialApp(home: OpenningApp()));
 }
+//  MyApp(
+//       date: "",
+//       plan: "",
+//       x: false,
+//       x2: true,
+//     ),
 
 class MyApp extends StatefulWidget {
   final String plan;
@@ -50,22 +50,8 @@ class _MyAppState extends State<MyApp> {
           borderRadius: BorderRadius.all(Radius.circular(3))),
       child: TextButton(
         onPressed: () async {
-          // AllTasks = [];
           final _sharedPreferences = await SharedPreferences.getInstance();
 
-          // int n = 0;
-          // _sharedPreferences.setInt("lenght", n);
-          // n += 1;
-          // int length = _sharedPreferences.getInt("lenght")!;
-          // for (int i = 0; i < length; i++) {
-          //   _sharedPreferences.setString("plan$i", widget.plan);
-          //   _sharedPreferences.setString("date$i", widget.date);
-
-          //   AllTasks.add(Tasks(_sharedPreferences.getString("plan$i") ?? "",
-          //       _sharedPreferences.getString("date$i") ?? ""));
-          // }
-          _sharedPreferences.setString("1", "hjvcg");
-          String a = _sharedPreferences.getString("1") ?? "";
           int m = _sharedPreferences.getInt("1") ?? 0;
           // _sharedPreferences.setInt("1", 0);
           // AllTasks = [];
@@ -136,11 +122,6 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.menu,
-                  color: Colors.black,
-                  size: 30,
-                ),
                 const SizedBox(
                   height: 25,
                 ),

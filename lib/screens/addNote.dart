@@ -86,7 +86,7 @@ class _AddNoteState extends State<AddNote> {
                                   ),
                                 ));
                           },
-                          icon: const Icon(Icons.crop_square))
+                          icon: const Icon(Icons.clear))
                     ],
                   ),
                   const SizedBox(
@@ -162,17 +162,12 @@ class _AddNoteState extends State<AddNote> {
               color: Colors.blue,
               child: TextButton(
                 onPressed: () {
-                  if (_controller.text != "") {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyApp(
-                              plan: _controller.text,
-                              date: date(),
-                              x: true,
-                              x2: true),
-                        ));
-                  }
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyApp(
+                            plan: _controller.text, date: date(), x: true,x2:true),
+                      ));
                 },
                 child: const Text(
                   "Create",
