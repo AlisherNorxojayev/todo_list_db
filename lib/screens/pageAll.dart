@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_db/main.dart';
-import 'package:todo_list_db/models/models.dart';
 
 class PageAll extends StatefulWidget {
-  final List<Tasks> Plans;
-  const PageAll({super.key, required this.Plans});
+  final List list_data;
+  const PageAll({super.key, required this.list_data});
 
   @override
   State<PageAll> createState() => _PageAllState();
@@ -12,7 +11,18 @@ class PageAll extends StatefulWidget {
 
 class _PageAllState extends State<PageAll> {
   @override
+  List _list = [];
+  void filter_list_data() {
+    for (int i = 0; i < widget.list_data.length; i++) {
+      // print(widget.list_data[i]["describtion"]);
+      if (widget.list_data[i]["describtion"] != "") {
+        _list.add(widget.list_data[i]);
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
+    filter_list_data();
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
@@ -22,7 +32,11 @@ class _PageAllState extends State<PageAll> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyApp(date: "", plan: "", x: false,x2: true,),
+                    builder: (context) => MyApp(
+                      date: "",
+                      plan: "",
+                      x: false,
+                    ),
                   ));
             },
             icon: Icon(Icons.arrow_back_ios)),
@@ -70,11 +84,14 @@ class _PageAllState extends State<PageAll> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20)),
                 child: ListView.builder(
-                  itemCount: widget.Plans.length,
+                  itemCount: _list.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(widget.Plans[index].task_type),
-                      subtitle: Text(widget.Plans[index].task_time),
+                      onTap: () {
+                        print("tap");
+                      },
+                      title: Text(_list[index]["title"]),
+                      subtitle: Text(_list[index]["describtion"]),
                     );
                   },
                 ),

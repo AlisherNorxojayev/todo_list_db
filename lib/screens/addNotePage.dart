@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_list_db/main.dart';
+import 'package:todo_list_db/services/todoAPI.dart';
 
 class AddNote extends StatefulWidget {
   const AddNote({super.key});
@@ -11,7 +12,6 @@ class AddNote extends StatefulWidget {
 
 class _AddNoteState extends State<AddNote> {
   TextEditingController _controller = TextEditingController();
-  TextEditingController _controller2 = TextEditingController();
 
   @override
   String date() {
@@ -82,7 +82,6 @@ class _AddNoteState extends State<AddNote> {
                                     plan: "",
                                     date: "",
                                     x: false,
-                                    x2: true,
                                   ),
                                 ));
                           },
@@ -162,11 +161,15 @@ class _AddNoteState extends State<AddNote> {
               color: Colors.blue,
               child: TextButton(
                 onPressed: () {
+                  addTodo(_controller.text, date());
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => MyApp(
-                            plan: _controller.text, date: date(), x: true,x2:true),
+                          plan: _controller.text,
+                          date: date(),
+                          x: true,
+                        ),
                       ));
                 },
                 child: const Text(
